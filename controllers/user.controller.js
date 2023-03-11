@@ -71,12 +71,12 @@ const usuariosPost = async (req = request, res = response ) => {
 const usuariosDelete = async (req = request, res = response ) => {
 
     const {id} = req.params;
-
+    
     //* Borrar fisicamente  
     // const usuario = await Usuario.findByIdAndDelete(id);
 
     //* Forma recomendada , esto para mantener la integridad referencial en la base de datos
-    const usuario = await Usuario.findByIdAndUpdate( id , { estado : false } );
+    const usuario = await Usuario.findByIdAndUpdate( id , { estado : false } , {new : true} );
 
     res.json({
         message : "Usuario eliminado",    
