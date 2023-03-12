@@ -20,6 +20,31 @@ const isAdminRole = ( req = request, res = response , next ) =>{
 
 }
 
+
+//? recibir argumentos en los middlewares 
+const hasRole = ( ...roles ) => {
+    
+    return (req = request , res = response , next) => {
+
+        if( !req.authenticatedUser ){
+            return res.status(500).json({
+                message : 'Se quiere verificar el role sin  validar el token'
+            })
+        }
+
+        if( !roles.includes( req.authenticatedUser.rol ) ) {
+            return res.status(401).json({
+                message : ` Este servicio requiere alguno de estos roles ${ roles } `
+            })
+        }
+
+        next();
+
+    }
+
+}
+
 module.exports ={
-    isAdminRole
+    isAdminRole,
+    hasRole
 }

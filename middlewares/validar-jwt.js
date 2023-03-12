@@ -18,7 +18,6 @@ const validarJWT = async ( req= request , res = response , next ) => {
         
         const {uid} =  JWT.verify(token , process.env.SECRETORPRIVATEKEY );
         
-        
         const usuario = await Usuario.findById(uid);
 
         if( !usuario ){
