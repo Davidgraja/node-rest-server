@@ -101,7 +101,6 @@ const googleSingIn = async ( req = request , res = response ) =>{
         })
     }
 
-
 }
 
 module.exports = {
