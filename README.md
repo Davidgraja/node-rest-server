@@ -1,4 +1,4 @@
 # WebServer + RestServer
 Backend creado con node  y express , Recuerden reconstruir  los módulos de node ``` npm install  ```
 
-Se han añadido nuevos middlewares de validacion de campos y roles en los usuarios , Ademas se añadio un nuevo endpoint para el login del usuario donde se generan jwt para la identificación de estos usuarios y las respectivas acciones que pueden hacer o ejecutar en nuestro servidor 
+Se ha añadido al proyecto el servicio de autenticación por medio google , Una vez recibida la información enviada por google se hacen las respectivas validaciones por nuestro propio backend , el cual generara al usuario un token de acceso en el caso de pasar correctamente todas las validaciónes.
