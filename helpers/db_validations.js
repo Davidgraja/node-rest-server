@@ -1,5 +1,4 @@
-const Role = require('../models/role');
-const Usuario = require('../models/usuario');
+const {Role , Usuario , Categorias } = require('../models')
 
 const roleValidate =  async ( rol = '' ) => {
         
@@ -29,8 +28,19 @@ const validateExistingIdUser =  async ( id ) => {
     }
 }
 
+const validateExistCategoryById = async (id) => {
+
+    const validateCategory = await Categorias.findById(id);
+
+    if( !validateCategory ) {
+        throw new Error(`El id: ${ id } no existe en nuestra base de datos`)
+    } 
+
+}
+
 module.exports = {
     roleValidate,
     validateExistingEmail,
-    validateExistingIdUser
+    validateExistingIdUser,
+    validateExistCategoryById
 }

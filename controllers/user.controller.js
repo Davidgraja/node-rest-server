@@ -6,13 +6,13 @@ const usuariosGet = async (req = request, res = response ) => {
 
     const query = { estado : true }
     
-    const { limit = 0 , from = 0 } = req.query;
+    const { limit = 0 , skip = 0 } = req.query;
     
     const [total , usuarios] = await Promise.all([
         Usuario.countDocuments( query ),
 
         Usuario.find( query )
-            .skip(Number(from))
+            .skip(Number(skip))
             .limit( Number(limit))
     ]) 
     
@@ -85,20 +85,9 @@ const usuariosDelete = async (req = request, res = response ) => {
 
 }
 
-const usuariosPatch = (req = request, res = response ) => {
-    
-    
-    res.json({
-        "msg" : "patch api - controlador"
-    })
-
-}
-
-
 module.exports = {
     usuariosGet,
     usuariosPut,
     usuariosPost,
     usuariosDelete,
-    usuariosPatch
 }
