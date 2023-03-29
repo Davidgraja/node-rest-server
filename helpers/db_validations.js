@@ -1,4 +1,4 @@
-const {Role , Usuario , Categorias } = require('../models')
+const {Role , Usuario , Categorias , Producto} = require('../models')
 
 const roleValidate =  async ( rol = '' ) => {
         
@@ -38,9 +38,21 @@ const validateExistCategoryById = async (id) => {
 
 }
 
+const validateExistProduct = async (nombre = '') => {
+
+    const validateProduct = await Producto.findOne({nombre});
+
+    if( validateProduct ) {
+        throw new Error(`El producto : ${ nombre } ya existe en nuestra base de datos , intente con otro nombre`); 
+    } 
+
+}
+
+
 module.exports = {
     roleValidate,
     validateExistingEmail,
     validateExistingIdUser,
-    validateExistCategoryById
+    validateExistCategoryById,
+    validateExistProduct
 }

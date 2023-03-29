@@ -2,12 +2,13 @@ const { request, response } = require("express");
 
 const {Categorias} = require('../models');
 
-const populateFields = {
-    nombre : 1 ,
-    correo : 1 ,
-    rol : 1 ,
-    uid : 1
-}
+//? si queremos traernos mas de un campo al hacer el relleno con populate
+// const populateFields = {
+//     nombre : 1 ,
+//     correo : 1 ,
+//     rol : 1 ,
+//     uid : 1
+// }
 
 
 const getCategories = async (req = request, res = response ) => {
@@ -22,7 +23,7 @@ const getCategories = async (req = request, res = response ) => {
         Categorias.find( query )
             .skip( Number(skip) )
             .limit( Number(limit) )
-            .populate('usuario', populateFields )
+            .populate('usuario', 'nombre' )
     ])
 
     res.json({
@@ -37,7 +38,7 @@ const getCategory = async ( req = request , res = response ) => {
 
     const { id } = req.params;
 
-    const category =  await Categorias.findById(id).populate('usuario' , populateFields);
+    const category =  await Categorias.findById(id).populate('usuario' , nombre);
 
     res.json(category)
     
@@ -86,7 +87,13 @@ const updateCategory = async (req = request , res = response) => {
         })
     }
 
-    const category = await Categorias.findByIdAndUpdate( id ,  { nombre }, { new : true} )
+    const data = {
+        nombre,
+        usuario : req.authenticatedUser._id
+
+    }
+
+    const category = await Categorias.findByIdAndUpdate( id , data , { new : true} )
 
     res.json({
         message : 'Categoria actualizada',
