@@ -48,11 +48,23 @@ const validateExistProduct = async (nombre = '') => {
 
 }
 
+const validateExistProductById = async (id) => {
+
+    const validateProductId = await Producto.findById(id);
+
+    if( !validateProductId ) {
+        throw new Error(`El id: ${ id } no existe en nuestra base de datos`)
+    } 
+
+}
+
 
 module.exports = {
     roleValidate,
     validateExistingEmail,
     validateExistingIdUser,
     validateExistCategoryById,
-    validateExistProduct
+    validateExistProduct,
+    validateExistProductById
+
 }
