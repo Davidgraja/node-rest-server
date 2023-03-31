@@ -23,7 +23,7 @@ const ProductoSchema = new Schema({
 
     precio : {
         type : Number,
-        defualt : 0 
+        default : 0 
     } , 
 
     categoria : {

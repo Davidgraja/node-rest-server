@@ -95,7 +95,7 @@ const deleteProduct = async ( req = request , res = response ) => {
     await Producto.findByIdAndUpdate(id , { estado : false } , {new : true })
 
     res.json({
-        message : 'usuario eliminado'
+        message : 'Producto eliminado'
     })
 }
 
