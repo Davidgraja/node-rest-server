@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { dbConection } = require('../database/config');
+const fileUpload = require('express-fileupload');
 
 class Server {
 
@@ -10,10 +11,11 @@ class Server {
 
         this.paths = {
             auth : '/api/auth',
-            search : '/api/search',
             categorias : '/api/categorias',
             productos : '/api/productos',
             productosPorCategoria : '/api/productos/categoria',
+            search : '/api/search',
+            uploads : '/api/uploads',
             usuarios : '/api/usuarios'
         }
         
@@ -35,26 +37,32 @@ class Server {
 
     middlewares (){
 
-        /*Lectura y pareseo de la informacion del body*/
-
+        // Lectura y parseo de la informacion del body
         this.app.use(express.json())
 
-        /*Configuración de Cors*/
+        // Configuración de Cors
         this.app.use(cors());
 
-        /*Dicrectorio publico*/
+        // Directorio publico
         this.app.use(express.static('public'));
+
+        // configuracion para la Carga de archivos
+        this.app.use(fileUpload({
+            useTempFiles : true,
+            tempFileDir : '/tmp/'
+        }));
     }
 
     routes (){
 
         this.app.use( this.paths.categorias , require('../routes/categorias'));
         this.app.use( this.paths.productos , require('../routes/producto'));
-        this.app.use(this.paths.productosPorCategoria , require('../routes/productsByCategory'));
         this.app.use( this.paths.usuarios , require('../routes/user'));
         this.app.use(this.paths.auth , require('../routes/auth'));
+        this.app.use(this.paths.productosPorCategoria , require('../routes/productsByCategory'));
         this.app.use(this.paths.search , require('../routes/search'));
-        
+        this.app.use(this.paths.uploads , require('../routes/uploads'));
+
     }
 
 
