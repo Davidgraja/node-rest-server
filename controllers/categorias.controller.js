@@ -38,7 +38,7 @@ const getCategory = async ( req = request , res = response ) => {
 
     const { id } = req.params;
 
-    const category =  await Categorias.findById(id).populate('usuario' , nombre);
+    const category =  await Categorias.findById(id).populate('usuario' , 'nombre');
 
     res.json(category)
     
