@@ -59,12 +59,25 @@ const validateExistProductById = async (id) => {
 }
 
 
+const collectionsAllowed = ( collection = '', collections = [] ) => {
+    const include = collections.includes(collection);
+    
+    if( !include ) {
+        throw new Error(`La colección : ${ collection } , no es permitida , intente con las siguientes opciones ${ collections }`);
+    }
+
+    return true;
+
+}
+
+
 module.exports = {
     roleValidate,
     validateExistingEmail,
     validateExistingIdUser,
     validateExistCategoryById,
     validateExistProduct,
-    validateExistProductById
+    validateExistProductById,
+    collectionsAllowed
 
 }
