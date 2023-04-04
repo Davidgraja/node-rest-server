@@ -1,8 +1,7 @@
 # WebServer + RestServer
 Backend creado con node  y express , Recuerden reconstruir  los módulos de node ``` npm install  ```
 
-Se ha implementado los modelos de Productos y Categorias  con sus repectivos endpoints , validaciones y middlewares.
+Se ha implementado al servicio la carga de archivos  de tipo imagenes para los usuarios y productos , esta implementado para guardar estos archivos tanto en file System como en cloudinary ; aunque en produción solo esta funcionando con el servicio de cloudinary
 
-Ademas se añadido al servicio dos endpoints de busqueda globales , estos podran realizar busquedas en cada uno los modelos planteados enviando solo un par de parametros.
+para mas información del funcionamiento de cada uno de los endpoints de este servicio puede leer la siguiente documentación : [Cafe node ](https://documenter.getpostman.com/view/23520684/2s93JwQ3DZ) 
 
-para mas informacion del funcionamiento de cada uno de los endpoints de este servicio puede leer la siguiente documentación : [Cafe node ](https://documenter.getpostman.com/view/23520684/2s93JwQ3DZ) 
