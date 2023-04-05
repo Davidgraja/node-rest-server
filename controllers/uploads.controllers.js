@@ -126,13 +126,13 @@ const showImage = async ( req = request , res = response ) => {
     if(  modelo.img ){
 
         // ? File System
-        // pathName =  path.join( __dirname , '../uploads' , collection , modelo.img );
+        pathName =  path.join( __dirname , '../uploads' , collection , modelo.img );
 
-        // if(fs.existsSync(pathName)){
-        //     return res.sendFile( pathName )
-        // }
+        if(fs.existsSync(pathName)){
+            return res.sendFile( pathName )
+        }
 
-        res.json(modelo.img)
+        // res.json(modelo.img)
     }
 
     pathName =  path.join( __dirname , '../assets' , 'no-image.jpg' );

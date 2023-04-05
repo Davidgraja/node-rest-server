@@ -13,7 +13,7 @@ router.put('/:collection/:id',[
     check('id'  , 'El id no es valido').isMongoId(),
     check('collection').custom( c => collectionsAllowed( c , ['usuarios', 'productos'] ) ),
     validarCampos
-] , updateImageCloudinary );
+] , updateImage );
 
 router.get('/:collection/:id',[
     // validateUploadsFiles,
